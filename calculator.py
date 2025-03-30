@@ -78,13 +78,13 @@ if fractionschoice == "2":
                 break
 
         print(result)
- #       try:
- #           subprocess.run("python", "root program.py")
- #       except FileNotFoundError:
-  #          print("Root program not found! Check that it exists in the same directory as this file.")
-   #         messagebox.showwarning("File Not Found", f"Error: root program not found!\nMake sure the file exists.")
-    #    except subprocess.CalledProcessError:
-     #       print(f"The program ran into an error and cannot run. Try again.")
-      #      messagebox.showwarning("Execution Error", f"Error: the program encountered an issue and did not run successfully.")
+        try:
+            subprocess.run("python3", "root program.py", check=True)
+        except FileNotFoundError:
+            print("Root program not found! Check that it exists in the same directory as this file.")
+            messagebox.showwarning("File Not Found", f"Error: root program not found!\nMake sure the file exists.")
+        except subprocess.CalledProcessError:
+            print(f"The program ran into an error and cannot run. Try again.")
+            messagebox.showwarning("Execution Error", f"Error: the program encountered an issue and did not run successfully.")
 else:
     print("Invalid selection! Exiting...")
