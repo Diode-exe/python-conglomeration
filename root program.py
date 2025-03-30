@@ -11,7 +11,7 @@ programs = {
     "2": "brute force ls.py",
     "3": "random number.py",
     "4": "calculator.py",
-    "5": "counter.py"
+    "5": "counter.py",
 }
 
 while True:
@@ -21,7 +21,7 @@ while True:
 
     if choice in programs:
         try:
-            subprocess.run(["python", programs[choice]], check=True)
+            subprocess.run(["python3", programs[choice]], check=True)
         except FileNotFoundError:
             print(f"{programs[choice]} not found! Check that it exists in the same directory as this file.")
             messagebox.showwarning("File Not Found", f"Error: {programs[choice]} not found!\nMake sure the file exists.")
