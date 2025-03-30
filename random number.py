@@ -1,4 +1,7 @@
 import random
+import subprocess
+import tkinter as tk
+from tkinter import messagebox
 lives = 3
 difficulty = input("Choose difficulty. 1 is 1 to 3, 2 is 1 to 5, and 3 is 1 to 10: ")
 
@@ -28,3 +31,11 @@ while lives > 0:
 
 if lives == 0:
     print(f"No more lives! The correct number was {random_number}. Exiting...")
+    try:
+        subprocess.run("python3", "root program.py", check=True)
+    except FileNotFoundError:
+        print("Root program not found! Check that it exists in the same directory as this file.")
+        messagebox.showwarning("File Not Found", f"Error: root program not found!\nMake sure the file exists.")
+    except subprocess.CalledProcessError:
+        print(f"The program ran into an error and cannot run. Try again.")
+        messagebox.showwarning("Execution Error", f"Error: the program encountered an issue and did not run successfully.")

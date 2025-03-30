@@ -4,87 +4,86 @@ import time
 import subprocess
 import tkinter as tk
 from tkinter import messagebox
+
 print("Welcome to the calculator!")
 result = 0
 fractionschoice = input("Choose 1 for standard operation math and 2 for fraction math: ")
+
 if fractionschoice == "1":
-    print ("Welcome to operation math. Follow the on screen instructions. Advancing in 3 seconds.")
+    print("Welcome to operation math. Follow the on-screen instructions. Advancing in 3 seconds.")
     time.sleep(3)
-    # Get a valid operation
+
     while True:
-        operation = input("Choose an operation: +, -, *, /, ** (exponentiation), %, square root (you can just type root, it will only use first number but "
-        "will ask for the secoond number), : ")
-        if operation in {"+", "-", "*", "/", "**", "%", "square root", "root"}:
+        operation = input("Choose an operation: +, -, *, /, ** (exponentiation), %, root: ")
+        if operation in {"+", "-", "*", "/", "**", "%", "root"}:
             break
         print("Invalid operation! Please choose a valid operator.")
 
     while True:
-        # Loop until valid numbers are entered
-        while True:
-            try:
-                first_number = int(input("Choose the first number: "))
-                second_number = int(input("Choose the second number: "))
-                break  # Exit loop if both inputs are valid
-            except ValueError:
-                print("Invalid input! Please enter a valid number.")
+        try:
+            first_number = int(input("Choose the first number: "))
+            second_number = int(input("Choose the second number: "))
+            break  
+        except ValueError:
+            print("Invalid input! Please enter a valid number.")
 
-
-
-        # Perform calculation
-        if operation == "+":
-            result = first_number + second_number
-        elif operation == "-":
-            result = first_number - second_number
-        elif operation == "*":
-            result = first_number * second_number
-        elif operation == "/":
-            if second_number == 0:
-                print("Error: Cannot divide by zero.")
-                continue  # Go back to asking for numbers
+    if operation == "+":
+        result = first_number + second_number
+    elif operation == "-":
+        result = first_number - second_number
+    elif operation == "*":
+        result = first_number * second_number
+    elif operation == "/":
+        if second_number == 0:
+            print("Error: Cannot divide by zero.")
+        else:
             result = first_number / second_number
-        elif operation == "**":
-            result = first_number ** second_number
-        elif operation == "%":
-            result = first_number * second_number / 100
-            print(result)
-        elif operation == "square root" or operation == "root":
-            result = math.sqrt(first_number)
-        print(f"Result: {result}")
-        break
-if fractionschoice == "2":
+    elif operation == "**":
+        result = first_number ** second_number
+    elif operation == "%":
+        result = first_number * second_number / 100
+    elif operation == "root":
+        result = math.sqrt(first_number)
+
+    print(f"Result: {result}")
+
+elif fractionschoice == "2":
     while True:
         try:
-            ND1 = int(input("Numerator and denominator: "))
-        except ValueError:
-            print("Invalid input. Choose a number, please.")
+            num1 = int(input("Enter numerator for first fraction: "))
+            denom1 = int(input("Enter denominator for first fraction: "))
+            num2 = int(input("Enter numerator for second fraction: "))
+            denom2 = int(input("Enter denominator for second fraction: "))
 
-        try:
-            ND2 = int(input("Numerator and denominator: "))
-        except ValueError:
-            print("Invalid input. Choose a number, please.")
-        
+            fraction1 = Fraction(num1, denom1)
+            fraction2 = Fraction(num2, denom2)
 
-        try:
-            operation = input("+ or -")
-        except operation not in {"+", "-"}:
-            print("Choose + or -")
+            operation = input("Choose + or -: ")
+            if operation not in {"+", "-"}:
+                print("Invalid operation! Please choose + or -.")
+                continue
 
-        while True:
             if operation == "+":
-                result = ND1 + ND2
-                break
-            elif operation == "-":
-                result = ND1 - ND2
-                break
+                result = fraction1 + fraction2
+            else:
+                result = fraction1 - fraction2
 
-        print(result)
-        try:
-            subprocess.run("python3", "root program.py", check=True)
-        except FileNotFoundError:
-            print("Root program not found! Check that it exists in the same directory as this file.")
-            messagebox.showwarning("File Not Found", f"Error: root program not found!\nMake sure the file exists.")
-        except subprocess.CalledProcessError:
-            print(f"The program ran into an error and cannot run. Try again.")
-            messagebox.showwarning("Execution Error", f"Error: the program encountered an issue and did not run successfully.")
+            print(f"Result: {result}")
+            break  
+
+        except ValueError:
+            print("Invalid input. Please enter integers for numerators and denominators.")
+        except ZeroDivisionError:
+            print("Error: Denominator cannot be zero.")
+
+    try:
+        subprocess.run(["python3", "root program.py"], check=True)
+    except FileNotFoundError:
+        print("Root program not found! Check that it exists in the same directory as this file.")
+        messagebox.showwarning("File Not Found", "Error: root program not found!\nMake sure the file exists.")
+    except subprocess.CalledProcessError:
+        print("The program ran into an error and cannot run. Try again.")
+        messagebox.showwarning("Execution Error", "Error: the program encountered an issue and did not run successfully.")
+
 else:
     print("Invalid selection! Exiting...")
