@@ -10,13 +10,14 @@ programs = {
     "1": "brute force.py",
     "2": "brute force ls.py",
     "3": "random number.py",
-    "4": "calculator.py"
+    "4": "calculator.py",
+    "5": "counter.py"
 }
 
 while True:
     choice = input("Choose 1 for brute forcer (not real hacking tool), press 2 for brute forcer (line spam), "
-                   "press 3 for number guessing game, press 4 to start the calculator, "
-                   "press 5 to test or type bye or exit to exit: ")
+                   "press 3 for number guessing game, press 4 to start the calculator, press 5 to start the infinite counter "
+                   "press x to test or type bye or exit to exit: ")
 
     if choice in programs:
         try:
