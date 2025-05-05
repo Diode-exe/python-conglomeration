@@ -35,6 +35,7 @@ if action == "1":
 
     if result:
         print("Login successful!")
+        loggedIn = 1
         
     else:
         failedAttempt()
@@ -57,3 +58,5 @@ else:
 
 # Close connection
 conn.close()
+if loggedIn == 1:
+    print(f"Hello, {name}")

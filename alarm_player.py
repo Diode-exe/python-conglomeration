@@ -4,5 +4,5 @@ import time
 
 print("Alarm is going off. Press Ctrl+C to stop.")
 while True:
-    playsound("/home/rohan/Documents/python/ding.mp3")
+    playsound("ding.mp3")
     time.sleep(1)

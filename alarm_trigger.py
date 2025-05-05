@@ -12,7 +12,7 @@ while True:
     current_time = now.strftime("%H:%M")
     if current_time == alarmTime:
         print(alarmName)
-        subprocess.Popen(["/home/rohan/Documents/python/test-venv/bin/python3", "alarm_player.py"])
+        subprocess.Popen(["/test-venv/bin/python3", "alarm_player.py"])
         break
     time.sleep(5)
 1
