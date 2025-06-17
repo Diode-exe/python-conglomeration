@@ -1,8 +1,6 @@
 import math
 import tkinter as tk
-from tkinter import messagebox, simpledialog
-import os
-import json
+from tkinter import messagebox
 
 class CalculatorApp:
     def __init__(self, root):
